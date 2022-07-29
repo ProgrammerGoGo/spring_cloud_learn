@@ -1,0 +1,23 @@
+server:
+  port: 8081 # 服务端口
+
+spring:
+  application:
+    name: orderServer # 服务名
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloud_order?useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  type-aliases-package: com.cuijian.order.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+#    register-with-eureka: false
+#    fetch-registry: false
