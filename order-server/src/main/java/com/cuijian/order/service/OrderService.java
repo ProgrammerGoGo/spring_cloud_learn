@@ -1,8 +1,8 @@
 package com.cuijian.order.service;
 
+import com.cuijian.order.entity.Order;
+import com.cuijian.order.entity.User;
 import com.cuijian.order.mapper.OrderMapper;
-import com.cuijian.order.pojo.Order;
-import com.cuijian.order.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,21 +12,17 @@ public class OrderService {
 
     @Autowired
     private OrderMapper orderMapper;
-
     @Autowired
     private RestTemplate restTemplate;
 
-    public Order queryOrderById(Long orderId) {
-        // 1.查询订单
-        Order order = orderMapper.findById(orderId);
-        // 2.利用RestTemplate发起http请求，查询用户
-        // 2.1.url路径
+    public Order getById(Long id) {
+        // 获取订单信息
+        Order order = orderMapper.getById(id);
+        // 远程调用获取用户信息
         String url = "http://localhost:8082/user/" + order.getUserId();
-        // 2.2.发送http请求，实现远程调用
         User user = restTemplate.getForObject(url, User.class);
-        // 3.封装user到Order
+
         order.setUser(user);
-        // 4.返回
         return order;
     }
 }

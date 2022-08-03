@@ -1,6 +1,6 @@
-package com.cuijian.order.web;
+package com.cuijian.order.controller;
 
-import com.cuijian.order.pojo.Order;
+import com.cuijian.order.entity.Order;
 import com.cuijian.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,15 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("order")
+@RequestMapping("/order")
 public class OrderController {
 
-   @Autowired
-   private OrderService orderService;
+    @Autowired
+    private OrderService orderService;
 
-    @GetMapping("{orderId}")
-    public Order queryOrderByUserId(@PathVariable("orderId") Long orderId) {
-        // 根据id查询订单并返回
-        return orderService.queryOrderById(orderId);
+    @GetMapping("{id}")
+    public Order getById(@PathVariable("id") Long id){
+        return orderService.getById(id);
     }
 }

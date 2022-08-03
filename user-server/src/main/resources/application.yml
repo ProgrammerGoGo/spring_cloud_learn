@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: userServer
+    name: userserver
   datasource:
     url: jdbc:mysql://localhost:3306/cloud_user?useSSL=false
     username: root
@@ -11,13 +11,6 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 
 mybatis:
-  type-aliases-package: com.cuijian.user.pojo
+  type-aliases-package: com.cuijian.user.entity
   configuration:
     map-underscore-to-camel-case: true
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8080/eureka
-#    register-with-eureka: false
-#    fetch-registry: false

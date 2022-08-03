@@ -1,10 +1,10 @@
-package com.cuijian.user.pojo;
+package com.cuijian.user.entity;
 
 import lombok.Data;
 
 @Data
 public class User {
-    private Long id;
+    private long id;
     private String username;
     private String address;
 }
