@@ -19,7 +19,7 @@ public class OrderService {
         // 获取订单信息
         Order order = orderMapper.getById(id);
         // 远程调用获取用户信息
-        String url = "http://localhost:8082/user/" + order.getUserId();
+        String url = "http://userservice/user/" + order.getUserId();
         User user = restTemplate.getForObject(url, User.class);
 
         order.setUser(user);

@@ -14,3 +14,21 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    nacos:
+      server-addr: localhost:8848 # nacos 服务端地址
+      discovery:
+        cluster-name: HZ # HZ是集群名
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+userservice:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 负载均衡规则
+
+ribbon:
+  eager-load:
+    enabled: true # 开启饥饿加载
+    clients:  # 指定饥饿加载的服务名
+      - userservice
